@@ -22,7 +22,7 @@ function App() {
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.id]: e.target.value, 
+      [e.target.id]: e.target.value,
     });
   };
 
@@ -36,26 +36,25 @@ function App() {
     if (!email) {
       newErrors.email = "Please fill out the email field";
     } else if (!email.includes("@")) {
+      newErrors.email = "Invalid email";
       alert("Invalid email. Please check your email address.");
-      newErrors.email = "Invalid email.";
     }
     if (!phone) {
       newErrors.phone = "Please fill out the Phone field";
     } else if (!/^\d{10}$/.test(phone)) {
-      alert("Invalid phone number. Please enter a 10-digit phone number.");
       newErrors.phone = "Invalid phone number";
+      alert("Invalid phone number. Please enter a 10-digit phone number.");
     }
     if (!dob) {
       newErrors.dob = "Please fill out the Date of Birth field.";
     } else if (new Date(dob) > new Date()) {
-      alert("Invalid Date of Birth. Please enter a past date.");
       newErrors.dob = "Invalid Date of Birth";
+      alert("Invalid Date of Birth. Please enter a past date.");
     }
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
-
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -71,9 +70,10 @@ function App() {
 
       <ReactModal
         isOpen={isOpen}
-        onRequestClose={modalClose} 
+        onRequestClose={modalClose} // Ensures the modal closes when clicking outside
         className="modal-content"
         overlayClassName="modal-overlay"
+        shouldCloseOnOverlayClick={true} // Ensures clicking on overlay will close the modal
       >
         <form onSubmit={handleSubmit}>
           <div>
