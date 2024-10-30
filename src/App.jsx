@@ -69,7 +69,7 @@ function App() {
       newErrors.dob = "Please fill out the Date of Birth field.";
     } else if (new Date(dob) > new Date()) {
       newErrors.dob = "Invalid Date of Birth";
-      alert("Invalid Date of Birth. Please enter a past date.");
+      alert("Invalid date of birth");
     }
 
     setErrors(newErrors);
