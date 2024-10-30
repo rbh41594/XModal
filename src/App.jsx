@@ -48,8 +48,8 @@ function App() {
     if (!dob) {
       newErrors.dob = "Please fill out the Date of Birth field.";
     } else if (new Date(dob) > new Date()) {
-      newErrors.dob = "Invalid Date of Birth"; 
-      alert("Invalid date of birth"); 
+      newErrors.dob = "Invalid Date of Birth"; // Updated error message
+      alert("Invalid date of birth"); // Updated alert message
     }
 
     setErrors(newErrors);
@@ -75,7 +75,7 @@ function App() {
         overlayClassName="modal-overlay"
         shouldCloseOnOverlayClick={true} 
       >
-        <div className="modal-overlay" onClick={modalClose}> 
+        <div className="modal"> {/* Ensure this wraps your form */}
           <form onSubmit={handleSubmit}>
             <div>
               <label htmlFor="username">Username:</label>
