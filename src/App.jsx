@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import ReactModal from "react-modal";
 import "./App.css";
 
@@ -18,26 +18,6 @@ function App() {
     setFormData({ username: "", email: "", dob: "", phone: "" });
     setErrors({});
   };
-
-  const handleClickOutside = (event) => {
-    const modalContent = document.querySelector(".modal-content");
-    if (modalContent && !modalContent.contains(event.target)) {
-      modalClose();
-    }
-  };
-
-  useEffect(() => {
-    if (isOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-    } else {
-      document.removeEventListener("mousedown", handleClickOutside);
-    }
-
-    // Cleanup on component unmount
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [isOpen]);
 
   const handleChange = (e) => {
     setFormData({
@@ -68,8 +48,8 @@ function App() {
     if (!dob) {
       newErrors.dob = "Please fill out the Date of Birth field.";
     } else if (new Date(dob) > new Date()) {
-      newErrors.dob = "Invalid Date of Birth";
-      alert("Invalid date of birth");
+      newErrors.dob = "Invalid Date of Birth"; 
+      alert("Invalid date of birth"); 
     }
 
     setErrors(newErrors);
@@ -84,18 +64,18 @@ function App() {
   };
 
   return (
-    <div className="modal">
+    <>
       <h1>User Details Modal</h1>
       <button onClick={modalOpen}>Open Form</button>
 
       <ReactModal
         isOpen={isOpen}
-        onRequestClose={modalClose}
+        onRequestClose={modalClose} 
         className="modal-content"
         overlayClassName="modal-overlay"
-        shouldCloseOnOverlayClick={true}
+        shouldCloseOnOverlayClick={true} 
       >
-        <div className="modal-content">
+        <div className="modal-overlay" onClick={modalClose}> 
           <form onSubmit={handleSubmit}>
             <div>
               <label htmlFor="username">Username:</label>
@@ -145,7 +125,7 @@ function App() {
           </form>
         </div>
       </ReactModal>
-    </div>
+    </>
   );
 }
 
