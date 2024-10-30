@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ReactModal from "react-modal";
 import "./App.css";
 
@@ -15,15 +15,29 @@ function App() {
   const modalOpen = () => setIsOpen(true);
   const modalClose = () => {
     setIsOpen(false);
-  
-    const overlayElement = document.querySelector(".modal-overlay");
-    if (overlayElement) {
-      overlayElement.style.display = "none";
-    }
-  
     setFormData({ username: "", email: "", dob: "", phone: "" });
     setErrors({});
   };
+
+  const handleClickOutside = (event) => {
+    const modalContent = document.querySelector(".modal-content");
+    if (modalContent && !modalContent.contains(event.target)) {
+      modalClose();
+    }
+  };
+
+  useEffect(() => {
+    if (isOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    // Cleanup on component unmount
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpen]);
 
   const handleChange = (e) => {
     setFormData({
@@ -43,19 +57,19 @@ function App() {
       newErrors.email = "Please fill out the email field";
     } else if (!email.includes("@")) {
       newErrors.email = "Invalid email";
-      alert("Invalid email"); 
+      alert("Invalid email. Please check your email address.");
     }
     if (!phone) {
-      newErrors.phone = "Please fill out the phone field";
+      newErrors.phone = "Please fill out the Phone field";
     } else if (!/^\d{10}$/.test(phone)) {
       newErrors.phone = "Invalid phone number";
-      alert("Invalid phone number"); 
+      alert("Invalid phone number. Please enter a 10-digit phone number.");
     }
     if (!dob) {
       newErrors.dob = "Please fill out the Date of Birth field.";
     } else if (new Date(dob) > new Date()) {
-      newErrors.dob = "Invalid date of birth";
-      alert("Invalid date of birth"); 
+      newErrors.dob = "Invalid Date of Birth";
+      alert("Invalid Date of Birth. Please enter a past date.");
     }
 
     setErrors(newErrors);
@@ -79,7 +93,7 @@ function App() {
         onRequestClose={modalClose}
         className="modal-content modal"
         overlayClassName="modal-overlay"
-        shouldCloseOnOverlayClick={true} 
+        shouldCloseOnOverlayClick={true}
       >
         <form onSubmit={handleSubmit}>
           <div>
