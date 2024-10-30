@@ -15,6 +15,12 @@ function App() {
   const modalOpen = () => setIsOpen(true);
   const modalClose = () => {
     setIsOpen(false);
+  
+    const overlayElement = document.querySelector(".modal-overlay");
+    if (overlayElement) {
+      overlayElement.style.display = "none";
+    }
+  
     setFormData({ username: "", email: "", dob: "", phone: "" });
     setErrors({});
   };
