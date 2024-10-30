@@ -74,6 +74,7 @@ function App() {
         className="modal-content"
         overlayClassName="modal-overlay"
         shouldCloseOnOverlayClick={true} 
+        parentSelector={() => document.getElementById("root")}
       >
         <div className="modal"> {/* Ensure this wraps your form */}
           <form onSubmit={handleSubmit}>
