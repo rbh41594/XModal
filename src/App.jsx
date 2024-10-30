@@ -37,19 +37,19 @@ function App() {
       newErrors.email = "Please fill out the email field";
     } else if (!email.includes("@")) {
       newErrors.email = "Invalid email";
-      alert("Invalid email. Please check your email address.");
+      alert("Invalid email"); // Update to match test
     }
     if (!phone) {
-      newErrors.phone = "Please fill out the Phone field";
+      newErrors.phone = "Please fill out the phone field";
     } else if (!/^\d{10}$/.test(phone)) {
       newErrors.phone = "Invalid phone number";
-      alert("Invalid phone number. Please enter a 10-digit phone number.");
+      alert("Invalid phone number"); // Update to match test
     }
     if (!dob) {
       newErrors.dob = "Please fill out the Date of Birth field.";
     } else if (new Date(dob) > new Date()) {
-      newErrors.dob = "Invalid Date of Birth";
-      alert("Invalid Date of Birth. Please enter a past date.");
+      newErrors.dob = "Invalid date of birth";
+      alert("Invalid date of birth"); // Update to match test
     }
 
     setErrors(newErrors);
@@ -70,10 +70,10 @@ function App() {
 
       <ReactModal
         isOpen={isOpen}
-        onRequestClose={modalClose} // Ensures the modal closes when clicking outside
-        className="modal-content"
+        onRequestClose={modalClose}
+        className="modal-content modal"
         overlayClassName="modal-overlay"
-        shouldCloseOnOverlayClick={true} // Ensures clicking on overlay will close the modal
+        shouldCloseOnOverlayClick={true} 
       >
         <form onSubmit={handleSubmit}>
           <div>
