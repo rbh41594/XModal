@@ -84,66 +84,68 @@ function App() {
   };
 
   return (
-    <>
+    <div className="modal">
       <h1>User Details Modal</h1>
       <button onClick={modalOpen}>Open Form</button>
 
       <ReactModal
         isOpen={isOpen}
         onRequestClose={modalClose}
-        className="modal-content modal"
+        className="modal-content"
         overlayClassName="modal-overlay"
         shouldCloseOnOverlayClick={true}
       >
-        <form onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor="username">Username:</label>
-            <input
-              id="username"
-              type="text"
-              value={formData.username}
-              onChange={handleChange}
-            />
-            {errors.username && (
-              <p style={{ color: "red" }}>{errors.username}</p>
-            )}
-          </div>
-          <div>
-            <label htmlFor="email">Email:</label>
-            <input
-              id="email"
-              type="email"
-              value={formData.email}
-              onChange={handleChange}
-            />
-            {errors.email && <p style={{ color: "red" }}>{errors.email}</p>}
-          </div>
-          <div>
-            <label htmlFor="dob">Date of Birth:</label>
-            <input
-              id="dob"
-              type="date"
-              value={formData.dob}
-              onChange={handleChange}
-            />
-            {errors.dob && <p style={{ color: "red" }}>{errors.dob}</p>}
-          </div>
-          <div>
-            <label htmlFor="phone">Phone:</label>
-            <input
-              id="phone"
-              type="tel"
-              value={formData.phone}
-              onChange={handleChange}
-            />
-            {errors.phone && <p style={{ color: "red" }}>{errors.phone}</p>}
-          </div>
-          <button type="submit" className="submit-button">
-            Submit
-          </button>
-        </form>
+        <div className="modal-content">
+          <form onSubmit={handleSubmit}>
+            <div>
+              <label htmlFor="username">Username:</label>
+              <input
+                id="username"
+                type="text"
+                value={formData.username}
+                onChange={handleChange}
+              />
+              {errors.username && (
+                <p style={{ color: "red" }}>{errors.username}</p>
+              )}
+            </div>
+            <div>
+              <label htmlFor="email">Email:</label>
+              <input
+                id="email"
+                type="email"
+                value={formData.email}
+                onChange={handleChange}
+              />
+              {errors.email && <p style={{ color: "red" }}>{errors.email}</p>}
+            </div>
+            <div>
+              <label htmlFor="dob">Date of Birth:</label>
+              <input
+                id="dob"
+                type="date"
+                value={formData.dob}
+                onChange={handleChange}
+              />
+              {errors.dob && <p style={{ color: "red" }}>{errors.dob}</p>}
+            </div>
+            <div>
+              <label htmlFor="phone">Phone:</label>
+              <input
+                id="phone"
+                type="tel"
+                value={formData.phone}
+                onChange={handleChange}
+              />
+              {errors.phone && <p style={{ color: "red" }}>{errors.phone}</p>}
+            </div>
+            <button type="submit" className="submit-button">
+              Submit
+            </button>
+          </form>
+        </div>
       </ReactModal>
-    </>
+    </div>
   );
 }
 
