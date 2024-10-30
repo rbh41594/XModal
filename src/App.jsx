@@ -37,19 +37,19 @@ function App() {
       newErrors.email = "Please fill out the email field";
     } else if (!email.includes("@")) {
       newErrors.email = "Invalid email";
-      alert("Invalid email"); // Update to match test
+      alert("Invalid email"); 
     }
     if (!phone) {
       newErrors.phone = "Please fill out the phone field";
     } else if (!/^\d{10}$/.test(phone)) {
       newErrors.phone = "Invalid phone number";
-      alert("Invalid phone number"); // Update to match test
+      alert("Invalid phone number"); 
     }
     if (!dob) {
       newErrors.dob = "Please fill out the Date of Birth field.";
     } else if (new Date(dob) > new Date()) {
       newErrors.dob = "Invalid date of birth";
-      alert("Invalid date of birth"); // Update to match test
+      alert("Invalid date of birth"); 
     }
 
     setErrors(newErrors);
